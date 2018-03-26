@@ -109,6 +109,35 @@ public class TV extends Product {
         //sets the type to the super description
         super.setDescription(this.type) ;
     }
+
+
+
+    /**
+     * setType
+     *
+     * set the type of the tv in super class as description
+     *
+     * @param iType - type of tv
+     */
+    public int findType(String iType){
+
+        int choice = 0;
+
+        if ( iType.equals("LED")){
+
+            choice = 1;
+
+        } else if ( iType.equals("LCD")){
+
+            choice =2;
+
+        } else if ( iType.equals("Plasma")){
+
+
+            choice = 3;
+        }
+        return choice;
+    }
     /**
      * setScreenSize
      *
@@ -119,6 +148,37 @@ public class TV extends Product {
     public void setScreenSize(int iScreenSize){
         this.screenSize = iScreenSize;
     }
+
+
+    /**
+     * convertBoolean
+     *
+     * converts string to boolean value
+     *
+     * @param value - value read in from file
+     */
+    public boolean convertBoolean(String value){
+
+
+        boolean isValid = false;
+
+
+        if ( value.equals("true")) {
+            isValid = true;
+        }
+        else if ( value.equals("false")){
+
+            isValid = false;
+
+
+        }
+
+
+        return isValid;
+
+
+    }
+
 
     /**
      * set3DCapability

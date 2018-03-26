@@ -46,10 +46,6 @@ public class ProductDB {
         // create array List of products
        productDB = new ArrayList<>();
 
-
-
-
-
     }
 
     /**
@@ -60,9 +56,9 @@ public class ProductDB {
      */
     public static void loadSavedProducts() {
 
-        String fileName = "src/OOP_AS_1_v2/prizes.txt"; // The name of the file to open.
+        String fileName = "ProductDB.txt";                                       // The name of the file to open.
 
-        String line;                                     // This will reference one line at a time
+        String line;                                                              // This will reference one line at a time
 
         try {
 
@@ -91,13 +87,25 @@ public class ProductDB {
 
                 } else if (ProductInfo[0].equals("TV")) {                         // if TV create tv object  f
 
+                    TV fileTV= new TV();                                          // create new phone object
 
+                    fileTV.setProductID(Integer.parseInt(ProductInfo[1]));        // set product ID of TV
+
+                    fileTV.setName(ProductInfo[2] );                              // set name  of TV
+
+                    int type = fileTV.findType(ProductInfo[3]);                   // finds type of tv
+
+                    fileTV.setType(type);                                         // set type of TV
+
+                    fileTV.setScreenSize(Integer.parseInt(ProductInfo[4]));       // set storage of phone
+
+                    boolean capable = fileTV.convertBoolean(ProductInfo[5]);      // set type of TV
+
+                    fileTV.set3DCapability(capable);
+
+                    fileTV.setPrice(Double.parseDouble(ProductInfo[6]));          // set price of phone
 
                 }
-
-
-
-
             }
             bufferedReader.close();                                               //  close file
 
