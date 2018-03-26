@@ -16,9 +16,10 @@ import static sample.Main.customerList;
  *****************************/
 
 
+@SuppressWarnings("CanBeFinal")
 public class Controller {
 
-    static ProductDB productDB = new ProductDB();        // Create new ProductDB to store all products
+    private static ProductDB productDB = new ProductDB();        // Create new ProductDB to store all products
 
     // For adding Phone
     final static private String  ASK_MAKE_PHONE          = "What is the make of the Phone?" ;
@@ -62,9 +63,9 @@ public class Controller {
      *
      * @return choice = user choice of product type
      */
-    public static int askProductType() {
+    static int askProductType() {
 
-        int choice = 0;                                                                // initialize return variable
+        int choice;                                                                // initialize return variable
 
         choice = Validate.readInt(ASK_PRODUCT_TYPE, 2);                      // display options to user for products and store result if valid choice
 
@@ -77,7 +78,7 @@ public class Controller {
      *
      * @param choice - user choice of TV or Phone
      */
-    public static void addProduct(int choice) {
+    static void addProduct(int choice) {
 
         switch (choice) {                                                              // select add method based on user choice
 
@@ -104,7 +105,7 @@ public class Controller {
      *
      * The method will then add this new object to the productDB arrayList
      */
-    public static void addPhone() {
+    private static void addPhone() {
 
         Phone newPhone = new Phone();                                   // create new Phone object
 
@@ -141,7 +142,7 @@ public class Controller {
      *
      * The method will then add this new object to the productDB arrayList
      */
-    public static void addTV() {
+    private static void addTV() {
 
         TV newTV = new TV();                                      // create new TV object
 
@@ -182,7 +183,7 @@ public class Controller {
      * Will search the productDB arrayList for matching ID and print details of product if found
      *
      */
-    public static void searchProductDB () {
+    static void searchProductDB() {
 
         int productID = Validate.readInt(ASK_PRODUCTID);         // store product ID of user entry
 
@@ -201,13 +202,13 @@ public class Controller {
      *
      * Stores the customers order by product and quanity
      */
-    public static void addCustomerOrder() {
+    static void addCustomerOrder() {
 
         Customer newCustomer = new Customer();                      // create new customer
 
-        Product orderedProduct = null;                              // initialise ordered product variable
+        Product orderedProduct;                              // initialise ordered product variable
 
-        int quantity = 0;                                           // set quantity to zero
+        int quantity;                                           // set quantity to zero
 
         String name = Validate.readString(ASK_CST_NAME);            // Asks for name of the customer
 
@@ -252,29 +253,28 @@ public class Controller {
      *
      * Stores the customers order by product and quanity
      */
-    public static void displayOrders() {
+    static void displayOrders() {
 
         String customerSearch;
         boolean customerFound = false;
 
-        while(customerFound == false){
+        while(!customerFound){
             customerSearch = Validate.readString(ASK_CST_ORDER);        // ask for customer to locate their order
 
             Customer temp;                                              // new customer object
 
-            for(int i = 0; i<customerList.size(); i++){                 // loops through the customer list
+            for (Customer aCustomerList : customerList) {                 // loops through the customer list
 
-                if(customerSearch.toUpperCase().equals(customerList.get(i).getName().toUpperCase())){   // Scenario 1: name is found in the customer list
+                if (customerSearch.toUpperCase().equals(aCustomerList.getName().toUpperCase())) {   // Scenario 1: name is found in the customer list
 
                     customerFound = true;                               // set to true to stop loop
 
-                    temp = customerList.get(i);                         // sets temp customer object to found object
+                    temp = aCustomerList;                         // sets temp customer object to found object
 
                     System.out.println("The orders for " + temp.getName() + " are: \n"); // prints out the name of customer
 
                     temp.viewAll();                                     // prints all orders for that customer
-                }
-                else{                                                   // Scenario 2: name is not found in the customer list
+                } else {                                                   // Scenario 2: name is not found in the customer list
 
                     System.out.println(CST_NAME_ERROR);                 // print error saying cannot find customer
                 }
