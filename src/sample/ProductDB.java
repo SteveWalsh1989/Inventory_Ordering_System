@@ -89,7 +89,7 @@ public class ProductDB {
                     filePhone.setPrice(Double.parseDouble(ProductInfo[5]));       // set price of phone
 
 
-                } else if (ProductInfo[0].equals("TV")) {                         // if TV create tv object
+                } else if (ProductInfo[0].equals("TV")) {                         // if TV create tv object  f
 
 
 
