@@ -1,20 +1,14 @@
 package sample;
 
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-
-/**
- * Object Orientated Principles
+/*****************************
+ * Database Design Project
  *
- * Project
  *
  * Name:       Steve Walsh
  * Student No: R00151053
- * Date      : 5/12/17
- */
+ * Date      : 26/3/18
+ *
+ *****************************/
 public abstract class Product {
 
     //----------------------------//
@@ -185,30 +179,7 @@ public abstract class Product {
 
     }
 
-    /**
-     * save
-     *
-     * Overloaded print method
-     *
-     * saves Phone details to file
-     *
-     */
-    public void save(int storage, String model)  {
 
-
-
-        try(FileWriter fw = new FileWriter("ProductDB.txt", true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter out = new PrintWriter(bw))
-        {
-            out.println("Phone" + "\t:\t" + this.productID    + "\t:\t" + this.name + "\t:\t"+ this.description +"\t:\t" + storage + "\t:\t"+ this.price);
-
-        } catch (IOException e) {
-        }
-
-
-
-    }
 
 
 } // close class

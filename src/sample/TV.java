@@ -1,14 +1,19 @@
 package sample;
 
-/**
- * Object Orientated Principles
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+/*****************************
+ * Database Design Project
  *
- * Project
  *
  * Name:       Steve Walsh
  * Student No: R00151053
- * Date      : 5/12/17
- */
+ * Date      : 26/3/18
+ *
+ *****************************/
 
 
 // Tv is a subclass of Product class
@@ -71,8 +76,6 @@ public class TV extends Product {
 
         super.setName(iMake);
     }
-
-
     /**
      * setType
      *
@@ -82,36 +85,23 @@ public class TV extends Product {
      */
     public void setType(int iType){
 
-        // select add method based on user choice
-        switch (iType) {
+        switch (iType) {                                        // select add method based on user choice
 
-            // Scenario 1 : choice is LED
-            case 1:
-                // sets type to LED
-                this.type = "LED" ;
-                super.setDescription(this.type) ;
+            case 1:                                             // Scenario 1 : choice is LED
 
+                this.type = "LED" ;                             // sets type to LED
                 break;
-            // Scenario 2 : choice is LCD
-            case 2:
-                // sets type to LCD
-                this.type = "LED" ;
+            case 2:                                             // Scenario 2 : choice is LCD
 
+                this.type = "LED" ;                             // sets type to LCD
                 break;
-            // Scenario 3 : choice is Plasma
-            case 3:
-                // sets type to Plasma
-                this.type = "Plasma" ;
+            case 3:                                             // Scenario 3 : choice is Plasma
 
+                this.type = "Plasma" ;                          // sets type to Plasma
                 break;
         }
-
-        //sets the type to the super description
-        super.setDescription(this.type) ;
+        super.setDescription(this.type) ;                       //sets the type to the super description
     }
-
-
-
     /**
      * setType
      *
@@ -148,8 +138,6 @@ public class TV extends Product {
     public void setScreenSize(int iScreenSize){
         this.screenSize = iScreenSize;
     }
-
-
     /**
      * convertBoolean
      *
@@ -159,9 +147,7 @@ public class TV extends Product {
      */
     public boolean convertBoolean(String value){
 
-
         boolean isValid = false;
-
 
         if ( value.equals("true")) {
             isValid = true;
@@ -169,17 +155,9 @@ public class TV extends Product {
         else if ( value.equals("false")){
 
             isValid = false;
-
-
         }
-
-
         return isValid;
-
-
     }
-
-
     /**
      * set3DCapability
      *
@@ -190,7 +168,6 @@ public class TV extends Product {
     public void set3DCapability(boolean i3DCapability) {
         this.capableOf3D = i3DCapability;
     }
-
 
     //
     // Get methods
@@ -205,7 +182,6 @@ public class TV extends Product {
     public String getMake() {
         return make;
     }
-
     /**
      * getType
      *
@@ -216,7 +192,6 @@ public class TV extends Product {
     public String getType(){
         return type;
     }
-
     /**
      * getScreenSize
      *
@@ -227,8 +202,6 @@ public class TV extends Product {
     public int getScreenSize() {
         return screenSize;
     }
-
-
     /**
      * get3DCapability
      *
@@ -239,9 +212,26 @@ public class TV extends Product {
     public boolean get3DCapability(){
         return capableOf3D;
     }
+    /**
+     * saveTV
+     *
+     *
+     * saves TV details to file
+     *
+     */
+    public void saveTV()  {
 
+        try(FileWriter fw = new FileWriter("src/sample/ProductDB.txt", true);  // product to product DB file
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter(bw))
+        {
+            out.println("TV" + ":" + this.getProductID() + ":" + this.getMake() + ":"+ this.getType() +":" +
+                    this.getScreenSize() + ":"+ this.get3DCapability()+ ":"+ this.getPrice() );
+            bw.close();
 
-
+        } catch (IOException e) {
+        }
+    }
     /**
      * print
      *
@@ -250,12 +240,7 @@ public class TV extends Product {
      *
      */
     public void print() {
-        // call print from super class to get
-        super.print(this.screenSize, this.capableOf3D);
 
+        super.print(this.screenSize, this.capableOf3D);         // call print from super class to get
     }
-
-
-
-
 }

@@ -1,19 +1,20 @@
 package sample;
 
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-/**
- * Object Orientated Principles
+/*****************************
+ * Database Design Project
  *
- * Project
  *
  * Name:       Steve Walsh
  * Student No: R00151053
- * Date      : 5/12/17
- */
+ * Date      : 26/3/18
+ *
+ *****************************/
 
 // Phone is a subclass of Product class
 public class Phone extends Product{
@@ -147,6 +148,27 @@ public class Phone extends Product{
     }
 
 
+    /**
+     * savePhone
+     *
+     * saves Phone details to file
+     *
+     */
+    public void savePhone()  {
+
+        try(FileWriter fw = new FileWriter("src/sample/ProductDB.txt", true);  // product to product DB file
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter(bw))
+        {
+            out.println("Phone" + ":" + this.getProductID() + ":" + this.getName() + ":"+
+                    this.getDescription() +":" + this.getStorage() + ":"+ this.getPrice() );
+
+            bw.close();
+
+        } catch (IOException e) {
+        }
+
+    }
     /**
      * print
      *

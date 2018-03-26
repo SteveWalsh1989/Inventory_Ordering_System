@@ -1,13 +1,13 @@
 package sample; /**
- * Object Orientated Principles
+ /*****************************
+ * Database Design Project
  *
- * Project
  *
  * Name:       Steve Walsh
  * Student No: R00151053
- * Date      : 3/12/17
- */
-
+ * Date      : 26/3/18
+ *
+ *****************************/
 import java.util.ArrayList;
 
 
